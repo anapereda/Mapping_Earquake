@@ -2,18 +2,22 @@
 console.log("working");
 
 // Create the map object with a center and zoom level.
-let map = L.map('mapid').setView([34.0522, -118.24], 14);
+let map = L.map('mapid').setView([37.6213, -122.3790], 5);
 
-// Get data from cities.js
-let cityData = cities;
-// Loop through the cities array and create one marker for each city.
-L.circle([34.0522, -118.2437], {
-    radius: 300,
-    color: "black",
-    fillColor: '#ffffa1'
- }).addTo(map);
 
-let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+// Coordinates for each point to be used in the line.
+let line = [
+    [33.9416, -118.4085],
+    [37.6213, -122.3790],
+    [40.7899, -111.9791],
+    [47.4502, -122.3088]
+  ];
+// Create a polyline using the line coordinates and make the line red.
+L.polyline(line, {
+    color: "yellow"
+  }).addTo(map);
+
+let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
     //can be changed to a variety of ids; which will make the mal look different (different tile styles)
